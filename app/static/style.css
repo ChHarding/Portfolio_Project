@@ -1,0 +1,207 @@
+/* Base styles for the navigation container */
+body{
+	padding: 0;
+	margin: 0;
+	font-family: 'Lora', serif;
+    position: relative; /* Allows for absolute positioning of footer */
+    padding-bottom: 60px; 
+/*	background: floralwhite;*/
+}
+
+main {
+    min-height: calc(100vh - 60px); /* Adjust min-height to keep footer at bottom */
+    margin-bottom: 30px;
+}
+
+.nav-bar {
+    text-align: center;
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+/*    border-bottom: 1px solid lightgrey;*/
+    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+
+.nav-bar.shadow {
+    box-shadow: 0 4px 2px -2px gray; /* Shadow to be added on scroll */
+}
+
+.nav-bar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Removes bullets from list items */
+  
+}
+  
+  /* Styles for <li> elements within the navigation */
+  
+.nav-bar li {
+    display: inline-block; /* Aligns list items horizontally */
+    padding: 24px 24px;
+}
+  
+ .nav-bar a {
+    color: rgba(33.3, 16.5, 0);
+    text-decoration: none; /* Removes underline from links */
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    padding:	12px 12px;
+    
+}
+  
+.nav-bar a:hover{
+    background: rgba(228, 224, 216, .09);
+    border-radius: 6px;
+/*	border: 1px solid rgba(228,224, 216, 1.0);*/
+    box-shadow: 8px 8px 8px rgba(228, 224, 216, 1)
+  
+}
+  
+.nav-bar a.active {
+    background: navajowhite;
+    border: 1px solid rgba(228,224, 216, 1.0);
+    border-radius: 6px;
+    box-shadow: 8px 8px 8px rgba(228, 224, 216, 1);
+    transition: 2s;
+}
+
+.intro{
+    margin-top: 100px;
+    margin-left: 24px;
+}
+
+.intro img{
+	float: left;
+	width: 30%;
+	margin-right: 24px;
+	border-radius: 32px;
+/*	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0,0.1);*/
+}
+
+.intro img:hover{
+	transition: scale(1.05);
+}
+
+.card{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	width: 300px;
+	margin-left: 24px;
+	border-radius: 32px;
+	text-transform: capitalize;
+
+}
+
+.card-container .card-link{
+	text-decoration: none;
+	color: inherit;
+}
+
+.card:hover{
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	transform: scale(1.1);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.card img {
+  width: 100%; /* Ensure the image takes up the full width of the card */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  border-radius: 32px 32px 0px 0px;
+}
+
+.card-container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 16px;
+	padding: 24px;
+}
+
+.header{
+	color: black;
+	margin-top: 100px;
+	margin-left: 24px;
+	text-transform: capitalize
+}
+
+.project-container {
+  /*margin-top: 100px;
+  margin-left: 24px;*/
+  padding: 16px; /* Add padding if needed */
+  text-align: left; /* Center text and inline elements */
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.project-container img {
+  width: 100%; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.project-container h2, .project-container h3{
+	text-transform: capitalize;
+}
+
+.image-grid {
+    display: grid;                 /* Use CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Create two equal columns */
+    gap: 16px;                     /* Space between images */
+}
+
+.image-grid.single-item {
+    grid-template-columns: 1fr;
+}
+
+.image-grid img {
+    width: 100%;                  /* Make images take full width of their container */
+    height: auto;                 /* Maintain aspect ratio */
+    display: block;               /* Prevent inline spacing issues */
+}
+
+.project-container iframe{
+	width: 100%;
+}
+
+/* Base styles for the footer */
+footer {
+    background-color: #f8f8f8; /* Light background color */
+    text-align: center; /* Center align text */
+    padding: 20px 0; /* Vertical padding */
+    width: 100%; /* Full width */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    position: absolute; /* Position absolute to stick to the bottom */
+    bottom: 0; /* Sticks to the bottom */
+}
+
+footer p {
+    margin: 0; /* Remove default margin */
+    color: #333; /* Darker text color for contrast */
+    font-size: 14px; /* Font size */
+}
+
+/* Add styles for social media links */
+footer .socials {
+    margin-top: 10px; /* Space above social links */
+}
+
+footer .socials a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Match text color */
+    margin: 0 10px; /* Space between icons */
+    font-size: 18px; /* Size for icons */
+    transition: color 0.3s; /* Transition effect */
+}
+
+footer .socials a:hover {
+    color: navajowhite; /* Change color on hover */
+}
