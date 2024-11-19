@@ -13,8 +13,7 @@
     <section class="project-section">
         <h2>{{ project.title }}</h2>
         <p>{{ project.description|safe }}</p>
-        <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}" loading = "lazy">
-
+        <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=project.image_path) }}" loading = "lazy"></div>
         {% for title in section_titles %}
             {% if project[title] != '' %}
                 <h3 id="{{ title }}">{{ title.replace('_', ' ') }}</h3>
@@ -22,13 +21,26 @@
                 <div class="image-grid">
                     {% set images = data_handler.get_images_by_project_and_section(project.id, title) %}
                     {% for image_path in images %}
-                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ title }}" loading = "lazy">
+                    <div class="image-container">
+                        <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=image_path) }}" loading = "lazy"></div>
+                    </div>
                     {% endfor %}
                 </div>
             {% endif %}
         {% endfor %}
     </section> 
 </div>
+
+<div id="toaster" class="toaster">Hover on an image to zoom with buttons</div>
+
+<!-- Add the navigation buttons -->
+<a href="{{ url_for(prev_project_id) if prev_project_id == 'my_works' else url_for('project_detail', project_id=prev_project_id) }}" id="previous-button" class="nav-button">Previous</a>
+{% if next_project_id %}
+    <a href="{{ url_for('project_detail', project_id=next_project_id) }}" id="next-button" class="nav-button">Next</a>
+{% else %}
+    <button id="next-button" class="nav-button" disabled>Next</button>
+{% endif %}
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const links = document.querySelectorAll('.sidebar a');
@@ -45,6 +57,36 @@
                 }
             });
         });
+
+        const footer = document.querySelector('footer');
+        const prevButton = document.getElementById('previous-button');
+        const nextButton = document.getElementById('next-button');
+        const gap = 20;
+
+        function adjustButtonPosition() {
+            const footerRect = footer.getBoundingClientRect();
+            const buttonHeight = prevButton.offsetHeight;
+            if (footerRect.top < window.innerHeight - buttonHeight) {
+                prevButton.style.bottom = (window.innerHeight - footerRect.top) + 'px';
+                nextButton.style.bottom = (window.innerHeight - footerRect.top) + 'px';
+            } else {
+                prevButton.style.bottom = '20px';
+                nextButton.style.bottom = '20px';
+            }
+        }
+
+        window.addEventListener('scroll', adjustButtonPosition);
+        window.addEventListener('resize', adjustButtonPosition);
+        adjustButtonPosition();
+
+        console.log("Page Loaded");
+        var toaster = document.getElementById('toaster');
+        toaster.classList.add('show');
+        console.log("Toaster Show Class Added");
+
+        setTimeout(function() {
+            toaster.classList.remove('show');
+        }, 3000); // 3 seconds
     });
-    </script>
+</script>
 {% endblock %}
